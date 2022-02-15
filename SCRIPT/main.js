@@ -142,5 +142,52 @@ const almacenarInfo = (sexo, edad, peso, altura, imc) => {
   
   };
 
+///////////////////////////////////////////////////////////////////
 
+const almacenarObjeto = () => {
+  localStorage.setItem('Informacion de usuario',JSON.stringify(informacion));
+
+}
+
+///////////////////////////////////////////////////////////////////
+
+estadistica.addEventListener('click', (e) =>{
+let estadistica = localStorage.getItem('Informacion de usuario');
+const datos_estadistica = JSON.parse(estadistica);
+
+traeInformacion(datos_estadistica);
+});
+
+traeInformacion = (datos_estadistica) =>{
+
+  for (let i = 0; i < datos_estadistica.length; i++) {
+      
+      let page = document.getElementById('Usuarios');
+
+let dataTable = `
+      <table">
+<colgroup span="4" class="columns"></colgroup>
+<tr>
+  <th>Usuario</th>
+  <th>Género</th>
+  <th>Edad</th>
+  <th>Peso</th>
+  <th>Altura</th>
+  <th>IMC</th>
+</tr>
+<tr>
+  <td>${i+1}</td>
+  <td>${datos_estadistica[i].Sexo}</td>
+  <td>${datos_estadistica[i].años}</td>
+  <td>${datos_estadistica[i].pesaje}</td>
+  <td>${datos_estadistica[i].alto}</td>
+  <td>${datos_estadistica[i].indice}</td>
+</tr>
+</table>
+      `
+      page.innerHTML += dataTable;
+
+  
+  }
+}
 
